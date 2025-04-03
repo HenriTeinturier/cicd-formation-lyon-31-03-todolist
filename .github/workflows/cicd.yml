@@ -21,7 +21,7 @@ jobs:
       # même si une version échoue
       fail-fast: false
     steps:
-      - uses: actions/checkout@va
+      - uses: actions/checkout@v4
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
