@@ -115,7 +115,7 @@ jobs:
       name: develop
       url: ${{ vars.DEPLOY_URL }}
     permissions:
-      pull-request: write
+      pull-requests: write
       contents: write
 
     steps:
