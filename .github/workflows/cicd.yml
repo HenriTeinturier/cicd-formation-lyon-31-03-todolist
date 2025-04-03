@@ -21,7 +21,7 @@ jobs:
       # même si une version échoue
       fail-fast: false
     steps:
-      - uses: actions/checkout@va
+      - uses: actions/checkout@v4
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -99,13 +99,13 @@ jobs:
     concurrency:
       group: deploy-dev
       cancel-in-progress: true
-      if: github.event_name == 'pull_request' && startsWith(github.head_ref, 'feature/')
-      steps:
-        - name: Fake deployment
-          run: |
-            echo "🚀 Deploying to ${{ vars.DEPLOY_URL }}"
-            echo "Using deploy token: ${{ secrets.DEPLOY_TOKEN }}"
-            echo "✅ Deployed successfully!"
+    if: github.event_name == 'pull_request' && startsWith(github.head_ref, 'feature/')
+    steps:
+      - name: Fake deployment
+        run: |
+          echo "🚀 Deploying to ${{ vars.DEPLOY_URL }}"
+          echo "Using deploy token: ${{ secrets.DEPLOY_TOKEN }}"
+          echo "✅ Deployed successfully!"
 
   auto-merge-and-create-release-pr:
     name: Manage Pull Request
@@ -115,7 +115,7 @@ jobs:
       name: develop
       url: ${{ vars.DEPLOY_URL }}
     permissions:
-      pull-request: write
+      pull-requests: write
       contents: write
 
     steps:
